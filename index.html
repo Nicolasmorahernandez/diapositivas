@@ -2,8 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>MORAES — Catálogo Vino</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{
@@ -67,16 +70,20 @@
 
   .brandmark{
     position:absolute;
-    bottom:34px;
+    bottom:calc(34px + env(safe-area-inset-bottom, 0px));
     left:50%;
     transform:translateX(-50%);
     z-index:4;
-    font-family:'Georgia','Times New Roman',serif;
-    letter-spacing:0.4em;
-    font-size:13px;
-    color:rgba(255,255,255,0.55);
+    font-family:'Cinzel Decorative','Cinzel','Georgia','Times New Roman',serif;
+    font-weight:700;
+    letter-spacing:0.35em;
+    font-size:15px;
+    color:rgba(255,255,255,0.85);
     text-transform:uppercase;
-    text-shadow:0 2px 12px rgba(0,0,0,0.6);
+    text-shadow:0 2px 12px rgba(0,0,0,0.7);
+    white-space:nowrap;
+    text-align:center;
+    width:max-content;
   }
 
 </style>
