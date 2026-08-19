@@ -125,9 +125,45 @@ const EXTRA_MEDIA = [
   {type:"video", src:"assets/moraes-clip-01.mp4"}
 ];
 
+// Tanda nueva (subida desde Downloads) — fotos a 5s, videos completos (duración real),
+// y repetidas más veces para que aparezcan con más frecuencia en la mezcla.
+const NEW_PHOTOS = [
+  "assets/new/new-photo-01.jpeg",
+  "assets/new/new-photo-02.jpeg",
+  "assets/new/new-photo-03.jpeg",
+  "assets/new/new-photo-04.jpeg",
+  "assets/new/new-photo-05.jpeg",
+  "assets/new/new-photo-06.jpeg",
+  "assets/new/new-photo-07.jpeg",
+  "assets/new/new-photo-08.jpeg",
+  "assets/new/new-photo-09.jpeg"
+];
+const NEW_PHOTO_REPEAT = 4;
+const NEW_PHOTO_DURATION = 5000;
+
+const NEW_VIDEOS = [
+  {src:"assets/new/new-video-01.mp4", duration:10005},
+  {src:"assets/new/new-video-02.mp4", duration:3456},
+  {src:"assets/new/new-video-03.mp4", duration:8000}
+];
+const NEW_VIDEO_REPEAT = 3;
+
+const NEW_MEDIA = [];
+NEW_PHOTOS.forEach(src => {
+  for(let r = 0; r < NEW_PHOTO_REPEAT; r++){
+    NEW_MEDIA.push({type:"image", src, duration: NEW_PHOTO_DURATION});
+  }
+});
+NEW_VIDEOS.forEach(v => {
+  for(let r = 0; r < NEW_VIDEO_REPEAT; r++){
+    NEW_MEDIA.push({type:"video", src:v.src, duration:v.duration});
+  }
+});
+
 let MEDIA = IMAGES.map(src => ({type:"image", src}))
   .concat(CATALOG_URLS.map(src => ({type:"image", src})))
-  .concat(EXTRA_MEDIA);
+  .concat(EXTRA_MEDIA)
+  .concat(NEW_MEDIA);
 
 // Mezcla (Fisher–Yates) — el orden cambia cada vez que se carga la página.
 for(let i = MEDIA.length - 1; i > 0; i--){
@@ -178,7 +214,10 @@ function showSlide(i){
 function scheduleNext(){
   clearTimeout(slideTimer);
   const item = MEDIA[current];
-  const dur = item.type === "video" ? 5000 : DURATION;
+  let dur = item.duration;
+  if(dur == null){
+    dur = item.type === "video" ? 5000 : DURATION;
+  }
   slideTimer = setTimeout(next, dur);
 }
 
