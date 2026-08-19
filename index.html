@@ -85,11 +85,29 @@
     width:max-content;
   }
 
+  .headermark{
+    position:absolute;
+    top:calc(34px + env(safe-area-inset-top, 0px));
+    left:50%;
+    transform:translateX(-50%);
+    z-index:4;
+    font-family:'Cinzel Decorative','Cinzel','Georgia','Times New Roman',serif;
+    font-weight:700;
+    letter-spacing:0.12em;
+    font-size:18px;
+    color:rgba(255,255,255,0.85);
+    text-shadow:0 2px 12px rgba(0,0,0,0.7);
+    white-space:nowrap;
+    text-align:center;
+    width:max-content;
+  }
+
 </style>
 </head>
 <body>
 <div class="stage" id="stage">
   <div class="vignette"></div>
+  <div class="headermark">Moraes Leather</div>
   <div class="brandmark">Moraes — Wine</div>
 </div>
 
